@@ -1,1 +1,27 @@
-document.addEventListener("DOMContentLoaded",()=>{appointment_id.value=localStorage.getItem("appointment_id")||""});emrForm.addEventListener("submit",async e=>{e.preventDefault();try{const d=await postJSON("/advanced/emr",{appointment_id:appointment_id.value,diagnosis:diagnosis.value,vitals:vitals.value,allergies:allergies.value,clinical_notes:clinical_notes.value});result.value=d.message||"EMR created";emrForm.reset();toast("EMR created")}catch(err){result.value=err.message}});
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("emrForm");
+    const result = document.getElementById("result");
+    const appointmentId = document.getElementById("appointment_id");
+
+    appointmentId.value = localStorage.getItem("appointment_id") || "";
+
+    form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        try {
+            const data = await postJSON("/advanced/emr", {
+                appointment_id: appointmentId.value,
+                diagnosis: document.getElementById("diagnosis").value,
+                vitals: document.getElementById("vitals").value,
+                allergies: document.getElementById("allergies").value,
+                clinical_notes: document.getElementById("clinical_notes").value,
+            });
+
+            result.value = data.message || "EMR created";
+            form.reset();
+            toast("EMR created");
+        } catch (error) {
+            result.value = error.message;
+        }
+    });
+});

@@ -6,22 +6,22 @@ const docupdatestatus = async (req, res) => {
 
         if (!appointment_id || !status) {
             return res.status(400).json({
-                message: "appointment_id and status are required",
+                message: "Appointment ID and status are required",
             });
         }
 
-        const allowedStatuses = ["pending", "confirmed", "declined", "completed"];
-
-        if (!allowedStatuses.includes(status)) {
+        if (!["pending", "confirmed", "declined", "completed"].includes(status)) {
             return res.status(400).json({
                 message: "Invalid status value",
             });
         }
 
         const [result] = await db.query(
-            `UPDATE appointment
-             SET request = ?
-             WHERE appointment_id = ?`,
+            `
+            UPDATE appointment
+            SET request = ?
+            WHERE appointment_id = ?
+            `,
             [status, appointment_id]
         );
 
@@ -32,15 +32,14 @@ const docupdatestatus = async (req, res) => {
         }
 
         return res.status(200).json({
-            message: "Status updated successfully",
-            appointment_id,
-            status,
+            message: "Appointment status updated successfully",
         });
-    } catch (err) {
-        console.error("docupdatestatus error:", err);
+    } catch (error) {
+        console.error("docupdatestatus error:", error);
+
         return res.status(500).json({
-            message: "Server error",
-            error: err.message,
+            message: "Failed to update appointment status",
+            error: error.message,
         });
     }
 };

@@ -1,1 +1,30 @@
-document.addEventListener("DOMContentLoaded",async()=>{try{doctorCount.textContent=(await getJSON("/loaddata/doctorlist")).length}catch(e){doctorCount.textContent="0"}try{patientCount.textContent=(await getJSON("/loaddata/patientlist")).length}catch(e){patientCount.textContent="0"}try{appointmentCount.textContent=(await getJSON("/loaddata/appointmentlist")).length}catch(e){appointmentCount.textContent="0"}try{const bills=await getJSON("/advanced/billing");revenueCount.textContent=money(bills.reduce((s,b)=>s+Number(b.amount||0),0))}catch(e){revenueCount.textContent="₹0"}});
+document.addEventListener("DOMContentLoaded", async () => {
+    try {
+        const doctors = await getJSON("/loaddata/doctorlist");
+        doctorCount.textContent = doctors.length;
+    } catch (error) {
+        doctorCount.textContent = "0";
+    }
+
+    try {
+        const patients = await getJSON("/loaddata/patientlist");
+        patientCount.textContent = patients.length;
+    } catch (error) {
+        patientCount.textContent = "0";
+    }
+
+    try {
+        const appointments = await getJSON("/loaddata/appointmentlist");
+        appointmentCount.textContent = appointments.length;
+    } catch (error) {
+        appointmentCount.textContent = "0";
+    }
+
+    try {
+        const bills = await getJSON("/advanced/billing");
+        const total = bills.reduce((sum, bill) => sum + Number(bill.amount || 0), 0);
+        revenueCount.textContent = money(total);
+    } catch (error) {
+        revenueCount.textContent = "₹0";
+    }
+});

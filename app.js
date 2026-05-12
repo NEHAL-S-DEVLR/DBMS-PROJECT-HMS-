@@ -1,43 +1,63 @@
 const express = require("express");
-const app = express();
 const path = require("path");
 const session = require("express-session");
-const bodyParser = require("body-parser");
+
+const app = express();
+
 const isLoggedIn = require("./middleware/authmiddleware");
-//Body-parser is middleware in Express.js that parses incoming request bodies (like JSON or form data)
-//into readable JavaScript objects accessible via req.body.
+
 const login = require("./routes/login");
 const signup = require("./routes/signup");
 const loaddata = require("./routes/loaddata");
 const request = require("./routes/request");
 const medical = require("./routes/medical");
 const advanced = require("./routes/advanced");
-app.use(express.json());
-app.use(express.static(path.join(__dirname, "public")));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 
-//session setup
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.use(
-	session({
-		secret: "d7f8a9b2c1e4d5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2",
-		resave: false,
-		saveUninitialized: false,
-		cookie: {
-			maxAge: 1000 * 60 * 60,
-			httpOnly: true,
-		},
-	}),
+    session({
+        secret: process.env.SESSION_SECRET || "mednexus_hms_secret",
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+            httpOnly: true,
+            sameSite: "lax",
+        },
+    })
 );
 
-// Routes
+app.use(express.static(path.join(__dirname, "public")));
+
 app.use("/login", login);
-app.use("/signup",signup);
-app.use("/loaddata",isLoggedIn,loaddata);
-app.use("/request",isLoggedIn,request);
+app.use("/signup", signup);
+app.use("/loaddata", isLoggedIn, loaddata);
+app.use("/request", isLoggedIn, request);
 app.use("/medical", isLoggedIn, medical);
 app.use("/advanced", isLoggedIn, advanced);
 
-app.listen(3000, () => {
-	console.log("Server running at http://localhost:3000");
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
+app.use((req, res) => {
+    return res.status(404).json({
+        message: "Route not found",
+        path: req.originalUrl,
+    });
+});
+
+app.use((err, req, res, next) => {
+    console.error("Unhandled server error:", err);
+
+    return res.status(500).json({
+        message: "Internal server error",
+    });
+});
+
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+    console.log(`Server running at http://localhost:${PORT}`);
 });

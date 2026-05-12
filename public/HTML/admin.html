@@ -1,1 +1,79 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Admin Command Center | MedNexus</title><link rel="stylesheet" href="../css/style.css"></head><body><div class="dashboard"><aside class="sidebar"><div class="sidebar-head"><div class="avatar">A</div><div><h2>MedNexus</h2><small>Admin Suite</small></div></div><nav class="side-links"><a class="active" href="admin.html">🏠 Overview</a><a class="" href="admin_create_doctor.html">🧑‍⚕️ Create Doctor</a><a class="" href="admin_create_patient.html">👤 Create Patient</a><a class="" href="admin_doctors.html">📋 Doctors</a><a class="" href="admin_patients.html">👥 Patients</a><a class="" href="admin_appointments.html">📅 Appointments</a><a class="" href="admin_prescriptions.html">💊 Prescriptions</a><a class="" href="admin_pharmacy.html">🛒 Pharmacy</a><a class="" href="admin_emr.html">📁 EMR</a><a class="" href="admin_billing.html">🧾 Billing</a><a class="" href="admin_staff.html">🏢 Staff</a><a class="" href="admin_meetings.html">🤝 Meetings</a><a class="" href="../index.html">↩ Logout</a></nav></aside><main class="main"><header class="topbar"><div><h1>Admin Command Center</h1><p>Control users, appointments, EMR, pharmacy, billing, staff and meetings.</p></div><div style="display:flex;gap:10px;align-items:center;max-width:460px;width:100%"><input id="globalSearch" placeholder="Search this page..." oninput="filterCards()"></div></header><section class="grid-4" style="margin-bottom:24px"><div class="stat"><span>Doctors</span><h3 id="doctorCount">--</h3></div><div class="stat"><span>Patients</span><h3 id="patientCount">--</h3></div><div class="stat"><span>Appointments</span><h3 id="appointmentCount">--</h3></div><div class="stat"><span>Revenue</span><h3 id="revenueCount">--</h3></div></section><section class="panel"><div class="panel-head"><h2>Admin Operations</h2><p>Every operation opens as a separate HTML page.</p></div><div class="grid-4"><a class="card" href="admin_create_doctor.html"><h3>Create Doctor</h3><p>Add doctor login and profile.</p></a><a class="card" href="admin_appointments.html"><h3>Appointments</h3><p>Confirm or decline requests.</p></a><a class="card" href="admin_pharmacy.html"><h3>Pharmacy</h3><p>View medicine orders.</p></a><a class="card" href="admin_billing.html"><h3>Billing</h3><p>Generate patient bills.</p></a></div></section></main></div><div id="toast" class="toast"></div><script src="../js/main.js"></script><script src="../js/admin_overview.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Admin Command Center | MedNexus</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <div class="dashboard">
+        <aside class="sidebar">
+            <div class="sidebar-head">
+                <div class="avatar">A</div>
+                <div>
+                    <h2>MedNexus</h2><small>Admin Suite</small>
+                </div>
+            </div>
+            <nav class="side-links"><a class="active" href="admin.html">🏠 Overview</a><a class=""
+                    href="admin_create_doctor.html">🧑‍⚕️ Create Doctor</a><a class=""
+                    href="admin_create_patient.html">👤 Create Patient</a><a class="" href="admin_doctors.html">📋
+                    Doctors</a><a class="" href="admin_patients.html">👥 Patients</a><a class=""
+                    href="admin_appointments.html">📅 Appointments</a><a class="" href="admin_prescriptions.html">💊
+                    Prescriptions</a><a class="" href="admin_pharmacy.html">🛒 Pharmacy</a><a class=""
+                    href="admin_emr.html">📁 EMR</a><a class="" href="admin_billing.html">🧾 Billing</a><a class=""
+                    href="admin_staff.html">🏢 Staff</a><a class="" href="admin_meetings.html">🤝 Meetings</a><a
+                    class="" href="../index.html">↩ Logout</a></nav>
+        </aside>
+        <main class="main">
+            <header class="topbar">
+                <div>
+                    <h1>Admin Command Center</h1>
+                    <p>Control users, appointments, EMR, pharmacy, billing, staff and meetings.</p>
+                </div>
+                <div style="display:flex;gap:10px;align-items:center;max-width:460px;width:100%"><input
+                        id="globalSearch" placeholder="Search this page..." oninput="filterCards()"></div>
+            </header>
+            <section class="grid-4" style="margin-bottom:24px">
+                <div class="stat"><span>Doctors</span>
+                    <h3 id="doctorCount">--</h3>
+                </div>
+                <div class="stat"><span>Patients</span>
+                    <h3 id="patientCount">--</h3>
+                </div>
+                <div class="stat"><span>Appointments</span>
+                    <h3 id="appointmentCount">--</h3>
+                </div>
+                <div class="stat"><span>Revenue</span>
+                    <h3 id="revenueCount">--</h3>
+                </div>
+            </section>
+            <section class="panel">
+                <div class="panel-head">
+                    <h2>Admin Operations</h2>
+                    <p>Every operation opens as a separate HTML page.</p>
+                </div>
+                <div class="grid-4"><a class="card" href="admin_create_doctor.html">
+                        <h3>Create Doctor</h3>
+                        <p>Add doctor login and profile.</p>
+                    </a><a class="card" href="admin_appointments.html">
+                        <h3>Appointments</h3>
+                        <p>Confirm or decline requests.</p>
+                    </a><a class="card" href="admin_pharmacy.html">
+                        <h3>Pharmacy</h3>
+                        <p>View medicine orders.</p>
+                    </a><a class="card" href="admin_billing.html">
+                        <h3>Billing</h3>
+                        <p>Generate patient bills.</p>
+                    </a></div>
+            </section>
+        </main>
+    </div>
+    <div id="toast" class="toast"></div>
+    <script src="../js/main.js"></script>
+    <script src="../js/admin_overview.js"></script>
+</body>
+
+</html>

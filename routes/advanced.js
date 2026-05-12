@@ -1,1 +1,34 @@
-const express=require("express");const router=express.Router();const c=require("../controllers/advancedController");router.get("/emr",c.allEMR);router.post("/emr",c.createEMR);router.get("/billing",c.allBilling);router.get("/mybilling",c.myBilling);router.post("/billing",c.createBilling);router.get("/staff",c.allStaff);router.post("/staff",c.createStaff);router.get("/meetings",c.allMeetings);router.post("/meeting",c.createMeeting);router.get("/mytracker",c.myTracker);router.post("/tracker",c.createTracker);module.exports=router;
+const express = require("express");
+const router = express.Router();
+
+const {
+    allEMR,
+    createEMR,
+    allBilling,
+    myBilling,
+    createBilling,
+    allStaff,
+    createStaff,
+    allMeetings,
+    createMeeting,
+    myTracker,
+    createTracker,
+} = require("../controllers/advancedController");
+
+router.get("/emr", allEMR);
+router.post("/emr", createEMR);
+
+router.get("/billing", allBilling);
+router.get("/mybilling", myBilling);
+router.post("/billing", createBilling);
+
+router.get("/staff", allStaff);
+router.post("/staff", createStaff);
+
+router.get("/meetings", allMeetings);
+router.post("/meeting", createMeeting);
+
+router.get("/mytracker", myTracker);
+router.post("/tracker", createTracker);
+
+module.exports = router;

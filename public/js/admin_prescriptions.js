@@ -1,2 +1,27 @@
-document.addEventListener("DOMContentLoaded",loadRecords);
-async function loadRecords(){const status=document.getElementById("status"),container=document.getElementById("prescriptionContainer");status.textContent="Loading...";container.innerHTML="";try{const d=await getJSON("/medical/prescriptions");status.textContent=`Loaded ${d.length} record(s).`;d.forEach(x=>{let c=document.createElement("div");c.className="card filter-card";c.innerHTML=`<h3>Prescription #${safe(x.prescription_id)}</h3><div><b>Patient:</b> ${safe(x.patient_name)}</div><div><b>Doctor:</b> ${safe(x.doctor_name)}</div><div><b>Medicine:</b> ${safe(x.medicine_name)}</div><div><b>Dosage:</b> ${safe(x.dosage)}</div><div><b>Notes:</b> ${safe(x.notes)}</div>`;container.appendChild(c);})}catch(err){status.innerHTML=`<span class="error">${err.message}</span>`}}
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("prescriptionForm");
+    const result = document.getElementById("result");
+    const appointmentId = document.getElementById("appointment_id");
+
+    appointmentId.value = localStorage.getItem("appointment_id") || "";
+
+    form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        try {
+            const data = await postJSON("/medical/prescription", {
+                appointment_id: appointmentId.value,
+                medicine_name: document.getElementById("medicine_name").value,
+                dosage: document.getElementById("dosage").value,
+                duration_days: document.getElementById("duration_days").value,
+                notes: document.getElementById("notes").value,
+            });
+
+            result.value = data.message || "Prescription created";
+            form.reset();
+            toast("Prescription created");
+        } catch (error) {
+            result.value = error.message;
+        }
+    });
+});

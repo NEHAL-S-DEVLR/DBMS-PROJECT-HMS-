@@ -1,1 +1,67 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Staff | MedNexus</title><link rel="stylesheet" href="../css/style.css"></head><body><div class="dashboard"><aside class="sidebar"><div class="sidebar-head"><div class="avatar">A</div><div><h2>MedNexus</h2><small>Admin Suite</small></div></div><nav class="side-links"><a class="" href="admin.html">🏠 Overview</a><a class="" href="admin_create_doctor.html">🧑‍⚕️ Create Doctor</a><a class="" href="admin_create_patient.html">👤 Create Patient</a><a class="" href="admin_doctors.html">📋 Doctors</a><a class="" href="admin_patients.html">👥 Patients</a><a class="" href="admin_appointments.html">📅 Appointments</a><a class="" href="admin_prescriptions.html">💊 Prescriptions</a><a class="" href="admin_pharmacy.html">🛒 Pharmacy</a><a class="" href="admin_emr.html">📁 EMR</a><a class="" href="admin_billing.html">🧾 Billing</a><a class="active" href="admin_staff.html">🏢 Staff</a><a class="" href="admin_meetings.html">🤝 Meetings</a><a class="" href="../index.html">↩ Logout</a></nav></aside><main class="main"><header class="topbar"><div><h1>Staff</h1><p>Add and view hospital staff.</p></div><div style="display:flex;gap:10px;align-items:center;max-width:460px;width:100%"><input id="globalSearch" placeholder="Search this page..." oninput="filterCards()"></div></header><section class="panel"><div class="panel-head"><h2>Add Staff</h2></div><form id="staffForm"><div class="grid-4"><div class="form-group"><label>Name</label><input id="staffName" required></div><div class="form-group"><label>Role</label><input id="staffRole" required></div><div class="form-group"><label>Salary</label><input id="staffSalary" type="number" required></div><div class="form-group"><label>Work Assigned</label><input id="staffWork" required></div></div><button class="btn">Add Staff</button><input id="result" readonly></form></section><section class="panel"><div class="panel-head"><h2>Staff Records</h2><button class="btn-outline" onclick="loadRecords()">Refresh</button></div><div id="status"></div><div id="staffContainer"></div></section></main></div><div id="toast" class="toast"></div><script src="../js/main.js"></script><script src="../js/admin_staff.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Staff | MedNexus</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <div class="dashboard">
+        <aside class="sidebar">
+            <div class="sidebar-head">
+                <div class="avatar">A</div>
+                <div>
+                    <h2>MedNexus</h2><small>Admin Suite</small>
+                </div>
+            </div>
+            <nav class="side-links"><a class="" href="admin.html">🏠 Overview</a><a class=""
+                    href="admin_create_doctor.html">🧑‍⚕️ Create Doctor</a><a class=""
+                    href="admin_create_patient.html">👤 Create Patient</a><a class="" href="admin_doctors.html">📋
+                    Doctors</a><a class="" href="admin_patients.html">👥 Patients</a><a class=""
+                    href="admin_appointments.html">📅 Appointments</a><a class="" href="admin_prescriptions.html">💊
+                    Prescriptions</a><a class="" href="admin_pharmacy.html">🛒 Pharmacy</a><a class=""
+                    href="admin_emr.html">📁 EMR</a><a class="" href="admin_billing.html">🧾 Billing</a><a
+                    class="active" href="admin_staff.html">🏢 Staff</a><a class="" href="admin_meetings.html">🤝
+                    Meetings</a><a class="" href="../index.html">↩ Logout</a></nav>
+        </aside>
+        <main class="main">
+            <header class="topbar">
+                <div>
+                    <h1>Staff</h1>
+                    <p>Add and view hospital staff.</p>
+                </div>
+                <div style="display:flex;gap:10px;align-items:center;max-width:460px;width:100%"><input
+                        id="globalSearch" placeholder="Search this page..." oninput="filterCards()"></div>
+            </header>
+            <section class="panel">
+                <div class="panel-head">
+                    <h2>Add Staff</h2>
+                </div>
+                <form id="staffForm">
+                    <div class="grid-4">
+                        <div class="form-group"><label>Name</label><input id="staffName" required></div>
+                        <div class="form-group"><label>Role</label><input id="staffRole" required></div>
+                        <div class="form-group"><label>Salary</label><input id="staffSalary" type="number" required>
+                        </div>
+                        <div class="form-group"><label>Work Assigned</label><input id="staffWork" required></div>
+                    </div><button class="btn">Add Staff</button><input id="result" readonly>
+                </form>
+            </section>
+            <section class="panel">
+                <div class="panel-head">
+                    <h2>Staff Records</h2><button class="btn-outline" onclick="loadRecords()">Refresh</button>
+                </div>
+                <div id="status"></div>
+                <div id="staffContainer"></div>
+            </section>
+        </main>
+    </div>
+    <div id="toast" class="toast"></div>
+    <script src="../js/main.js"></script>
+    <script src="../js/admin_staff.js"></script>
+</body>
+
+</html>

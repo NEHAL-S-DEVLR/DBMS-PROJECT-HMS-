@@ -1,2 +1,31 @@
-document.addEventListener("DOMContentLoaded",loadRecords);
-async function loadRecords(){const status=document.getElementById("status"),container=document.getElementById("emrContainer");status.textContent="Loading...";container.innerHTML="";try{const d=await getJSON("/advanced/emr");status.textContent=`Loaded ${d.length} record(s).`;d.forEach(x=>{let c=document.createElement("div");c.className="card filter-card";c.innerHTML=`<h3>EMR #${safe(x.emr_id)}</h3><div><b>Patient:</b> ${safe(x.patient_name)}</div><div><b>Doctor:</b> ${safe(x.doctor_name)}</div><div><b>Diagnosis:</b> ${safe(x.diagnosis)}</div><div><b>Vitals:</b> ${safe(x.vitals)}</div><div><b>Notes:</b> ${safe(x.clinical_notes)}</div>`;container.appendChild(c);})}catch(err){status.innerHTML=`<span class="error">${err.message}</span>`}}
+document.addEventListener("DOMContentLoaded", loadRecords);
+
+async function loadRecords() {
+    const status = document.getElementById("status");
+    const container = document.getElementById("emrContainer");
+
+    status.textContent = "Loading...";
+    container.innerHTML = "";
+
+    try {
+        const records = await getJSON("/advanced/emr");
+
+        status.textContent = `Loaded ${records.length} record(s).`;
+
+        records.forEach((record) => {
+            const card = document.createElement("div");
+            card.className = "card filter-card";
+
+            card.innerHTML = `<h3>EMR #${safe(record.emr_id)}</h3>
+                <div><b>Patient:</b> ${safe(record.patient_name)}</div>
+                <div><b>Doctor:</b> ${safe(record.doctor_name)}</div>
+                <div><b>Diagnosis:</b> ${safe(record.diagnosis)}</div>
+                <div><b>Vitals:</b> ${safe(record.vitals)}</div>
+                <div><b>Notes:</b> ${safe(record.clinical_notes)}</div>`;
+
+            container.appendChild(card);
+        });
+    } catch (error) {
+        status.innerHTML = `<span class="error">${error.message}</span>`;
+    }
+}

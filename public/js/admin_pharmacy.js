@@ -1,2 +1,30 @@
-document.addEventListener("DOMContentLoaded",loadRecords);
-async function loadRecords(){const status=document.getElementById("status"),container=document.getElementById("orderContainer");status.textContent="Loading...";container.innerHTML="";try{const d=await getJSON("/medical/pharmacyorders");status.textContent=`Loaded ${d.length} record(s).`;d.forEach(x=>{let c=document.createElement("div");c.className="card filter-card";c.innerHTML=`<h3>Order #${safe(x.order_id)}</h3><div><b>Patient:</b> ${safe(x.patient_name)}</div><div><b>Medicine:</b> ${safe(x.medicine_name)}</div><div><b>Address:</b> ${safe(x.delivery_address)}</div><div><b>Status:</b> ${badge(x.order_status)}</div>`;container.appendChild(c);})}catch(err){status.innerHTML=`<span class="error">${err.message}</span>`}}
+document.addEventListener("DOMContentLoaded", loadRecords);
+
+async function loadRecords() {
+    const status = document.getElementById("status");
+    const container = document.getElementById("orderContainer");
+
+    status.textContent = "Loading...";
+    container.innerHTML = "";
+
+    try {
+        const records = await getJSON("/medical/pharmacyorders");
+
+        status.textContent = `Loaded ${records.length} record(s).`;
+
+        records.forEach((record) => {
+            const card = document.createElement("div");
+            card.className = "card filter-card";
+
+            card.innerHTML = `<h3>Order #${safe(record.order_id)}</h3>
+                <div><b>Patient:</b> ${safe(record.patient_name)}</div>
+                <div><b>Medicine:</b> ${safe(record.medicine_name)}</div>
+                <div><b>Address:</b> ${safe(record.delivery_address)}</div>
+                <div><b>Status:</b> ${badge(record.order_status)}</div>`;
+
+            container.appendChild(card);
+        });
+    } catch (error) {
+        status.innerHTML = `<span class="error">${error.message}</span>`;
+    }
+}

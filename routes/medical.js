@@ -1,1 +1,23 @@
-const express=require("express");const router=express.Router();const c=require("../controllers/medicalController");router.post("/prescription",c.createPrescription);router.get("/prescriptions",c.allPrescriptions);router.get("/myprescriptions",c.myPrescriptions);router.post("/pharmacyorder",c.createPharmacyOrder);router.get("/pharmacyorders",c.allPharmacyOrders);router.get("/mypharmacyorders",c.myPharmacyOrders);module.exports=router;
+const express = require("express");
+const router = express.Router();
+
+const {
+    createPrescription,
+    allPrescriptions,
+    myPrescriptions,
+    createPharmacyOrder,
+    allPharmacyOrders,
+    myPharmacyOrders,
+} = require("../controllers/medicalController");
+
+router.post("/prescription", createPrescription);
+
+router.get("/prescriptions", allPrescriptions);
+router.get("/myprescriptions", myPrescriptions);
+
+router.post("/pharmacyorder", createPharmacyOrder);
+
+router.get("/pharmacyorders", allPharmacyOrders);
+router.get("/mypharmacyorders", myPharmacyOrders);
+
+module.exports = router;

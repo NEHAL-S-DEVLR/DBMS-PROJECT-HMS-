@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     appointment_id.addEventListener("change", async () => {
         localStorage.setItem("appointment_id", appointment_id.value);
+
         await loadMessages();
         startAutoRefresh();
     });
@@ -36,8 +37,8 @@ async function loadCurrentUser() {
         if (document.getElementById("currentUserLabel")) {
             currentUserLabel.textContent = `${currentUserName} · ${currentUserRole}`;
         }
-    } catch (err) {
-        chatStatus.innerHTML = `<span class="error">${err.message}</span>`;
+    } catch (error) {
+        chatStatus.innerHTML = `<span class="error">${error.message}</span>`;
     }
 }
 
@@ -69,14 +70,14 @@ async function loadMessages(showLoading = true) {
     }
 
     try {
-        const rows = await getJSON(
+        const messages = await getJSON(
             `/loaddata/loadmessages?appointment_id=${encodeURIComponent(appointment_id.value)}`
         );
 
-        chatStatus.textContent = `Showing ${rows.length} message(s) for appointment #${appointment_id.value}.`;
+        chatStatus.textContent = `Showing ${messages.length} message(s) for appointment #${appointment_id.value}.`;
         chatBox.innerHTML = "";
 
-        if (rows.length === 0) {
+        if (messages.length === 0) {
             chatBox.innerHTML = `
                 <div class="chat-empty">
                     No messages yet. Send the first message below.
@@ -85,7 +86,7 @@ async function loadMessages(showLoading = true) {
             return;
         }
 
-        rows.forEach((message) => {
+        messages.forEach((message) => {
             const messageCard = document.createElement("div");
             const isMine = message.sender_role === currentUserRole;
 
@@ -106,8 +107,8 @@ async function loadMessages(showLoading = true) {
         });
 
         chatBox.scrollTop = chatBox.scrollHeight;
-    } catch (err) {
-        chatStatus.innerHTML = `<span class="error">${err.message}</span>`;
+    } catch (error) {
+        chatStatus.innerHTML = `<span class="error">${error.message}</span>`;
     }
 }
 
@@ -127,8 +128,8 @@ async function sendMessage() {
         toast(data.message || "Message sent");
 
         await loadMessages(false);
-    } catch (err) {
-        chatStatus.innerHTML = `<span class="error">${err.message}</span>`;
+    } catch (error) {
+        chatStatus.innerHTML = `<span class="error">${error.message}</span>`;
     }
 }
 
@@ -152,8 +153,8 @@ async function deleteChat() {
         toast(data.message || "Chat deleted");
 
         await loadMessages(false);
-    } catch (err) {
-        chatStatus.innerHTML = `<span class="error">${err.message}</span>`;
+    } catch (error) {
+        chatStatus.innerHTML = `<span class="error">${error.message}</span>`;
     }
 }
 
