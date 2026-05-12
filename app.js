@@ -10,7 +10,8 @@ const login = require("./routes/login");
 const signup = require("./routes/signup");
 const loaddata = require("./routes/loaddata");
 const request = require("./routes/request");
-
+const medical = require("./routes/medical");
+const advanced = require("./routes/advanced");
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.json());
@@ -34,6 +35,8 @@ app.use("/login", login);
 app.use("/signup",signup);
 app.use("/loaddata",isLoggedIn,loaddata);
 app.use("/request",isLoggedIn,request);
+app.use("/medical", isLoggedIn, medical);
+app.use("/advanced", isLoggedIn, advanced);
 
 app.listen(3000, () => {
 	console.log("Server running at http://localhost:3000");
