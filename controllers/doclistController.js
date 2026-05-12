@@ -13,7 +13,7 @@ const doclist = async (req, res) => {
         d.gender
       FROM doctor d
       JOIN login l ON d.user_id = l.user_id
-      WHERE l.role = 'doctor'
+      WHERE l.role = 'doctor' and l.is_active = 'active'
       ORDER BY d.user_id ASC
     `);
 

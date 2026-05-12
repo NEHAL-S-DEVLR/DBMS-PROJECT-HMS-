@@ -27,7 +27,7 @@ const userappointmentlist = async (req, res) => {
                 FROM appointment a
                 JOIN patient p ON a.patient_id = p.user_id
                 JOIN doctor d ON a.doctor_id = d.user_id
-                WHERE a.doctor_id = ? AND a.request = 'confirmed'
+                WHERE a.doctor_id = ? AND a.request IN ('confirmed', 'completed')
                 ORDER BY a.appointment_date DESC, a.appointment_time DESC`,
                 [userId]
             );

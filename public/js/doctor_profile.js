@@ -1,0 +1,1 @@
+document.addEventListener("DOMContentLoaded",async()=>{try{const d=await getJSON("/loaddata/userprofile");name.textContent=d.name||"";email.textContent=d.email||"";phone.textContent=d.phone||"";dob.textContent=d.dob||"";gender.textContent=d.gender||"";specialization.textContent=d.specialization||""}catch(err){toast(err.message)}});
