@@ -10,8 +10,19 @@
     "license": "ISC",
     "type": "commonjs",
     "dependencies": {
+        "dotenv": "^17.4.2",
         "express": "^5.2.1",
         "express-session": "^1.19.0",
         "mysql2": "^3.22.3"
-    }
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/NEHAL-S-DEVLR/DBMS-PROJECT-HMS-.git"
+    },
+    "keywords": [],
+    "author": "",
+    "bugs": {
+        "url": "https://github.com/NEHAL-S-DEVLR/DBMS-PROJECT-HMS-/issues"
+    },
+    "homepage": "https://github.com/NEHAL-S-DEVLR/DBMS-PROJECT-HMS-#readme"
 }
