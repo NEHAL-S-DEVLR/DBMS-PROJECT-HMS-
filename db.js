@@ -2,7 +2,7 @@ const mysql = require("mysql2/promise");
 
 const db = mysql.createPool({
     host: process.env.DB_HOST,
-    port: Number(process.env.DB_PORT || 3306),
+    port: Number(process.env.DB_PORT),
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
@@ -11,6 +11,7 @@ const db = mysql.createPool({
         rejectUnauthorized: false,
     },
 
+    connectTimeout: 20000,
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0,
@@ -25,7 +26,8 @@ const db = mysql.createPool({
         connection.release();
     } catch (error) {
         console.error("DB connection failed:");
-        console.error(error.message);
+        console.error("Code:", error.code);
+        console.error("Message:", error.message);
     }
 })();
 
