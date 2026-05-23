@@ -1,1 +1,235 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MedNexus Hospitals | Advanced HMS</title><link rel="stylesheet" href="css/style.css"></head><body><nav class="site-nav glass"><a class="logo" href="index.html">MedNexus <span>Hospitals</span></a><div class="nav-links"><a class="active" href="index.html">Home</a><a href="HTML/features.html">Features</a><a href="HTML/pricing.html">Plans</a><a href="HTML/help.html">Help</a><a href="HTML/contact.html">Contact</a><a class="btn" href="HTML/login.html">Login</a></div></nav><section class="hero"><div><div class="kicker">⚕ Final DBMS Hospital Management System</div><h1>Advanced HMS with appointments, chat, EMR, pharmacy, billing and staff modules.</h1><p>This final frontend supports your friend’s core hospital system and your upgraded modules. Each dashboard operation opens as a separate HTML page.</p><div class="hero-actions"><a class="btn" href="HTML/login.html">Open Login Portal</a><a class="btn-blue" href="#signup">Patient Signup Here</a><a class="btn-outline" href="HTML/features.html">Explore Features</a></div><div class="grid-4"><div class="stat"><span>Roles</span><h3>3</h3></div><div class="stat"><span>Modules</span><h3>12+</h3></div><div class="stat"><span>Chat</span><h3>Live</h3></div><div class="stat"><span>DBMS</span><h3>SQL</h3></div></div></div><div class="hero-img"><div class="float one"><b>Doctor-Patient Chat</b><br><span style="color:#64748b">Appointment secured</span></div><div class="float two"><b>Workbench Ready</b><br><span style="color:#64748b">Tables, views, triggers</span></div></div></section><section class="section section-alt"><h2 class="section-title">Complete Feature Set</h2><p class="section-subtitle">Designed for a DBMS project demo: every form inserts or reads real MySQL data through your controllers.</p><div class="grid-4"><div class="card"><div class="feature-icon">📅</div><h3>Appointments</h3><p>Patient booking, admin approval and doctor completion.</p></div><div class="card"><div class="feature-icon">💬</div><h3>Messaging</h3><p>Doctor-patient appointment-based chat system.</p></div><div class="card"><div class="feature-icon">💊</div><h3>Prescriptions</h3><p>Doctor-created prescriptions visible to patients.</p></div><div class="card"><div class="feature-icon">🛒</div><h3>Pharmacy</h3><p>Patient can order medicine from prescription ID.</p></div><div class="card"><div class="feature-icon">📁</div><h3>EMR</h3><p>Electronic medical records created by doctors.</p></div><div class="card"><div class="feature-icon">🧾</div><h3>Billing</h3><p>Admin billing and patient billing visibility.</p></div><div class="card"><div class="feature-icon">🏢</div><h3>Staff</h3><p>Staff records, work and salary details.</p></div><div class="card"><div class="feature-icon">❤️</div><h3>Tracker</h3><p>Patient health tracker for weight, BP and sugar.</p></div></div></section><section class="section" id="signup"><h2 class="section-title">Patient Signup</h2><p class="section-subtitle">Create your patient account directly from the homepage. It uses <b>/signup/patient</b>.</p><div class="card" style="max-width:980px;margin:auto"><form id="homeSignupForm"><div class="grid-3"><div class="form-group"><label>Name</label><input id="suName" required></div><div class="form-group"><label>Email</label><input id="suEmail" type="email" required></div><div class="form-group"><label>Password</label><input id="suPassword" type="password" required></div><div class="form-group"><label>Confirm Password</label><input id="suConfirm" type="password" required></div><div class="form-group"><label>Phone</label><input id="suPhone" pattern="[0-9]{10}" required></div><div class="form-group"><label>DOB</label><input id="suDob" type="date" required></div><div class="form-group"><label>Gender</label><select id="suGender"><option value="male">male</option><option value="female">female</option></select></div></div><button class="btn" type="submit">Create Patient Account</button><input id="homeSignupResult" readonly placeholder="Signup status"></form></div></section><footer class="footer"><div class="footer-grid"><div><h2>MedNexus Hospitals</h2><p>Final combined frontend for DBMS hospital management system.</p></div><div><h3>Friend Features</h3><p>Login</p><p>Appointments</p><p>Chat</p></div><div><h3>Your Features</h3><p>EMR</p><p>Pharmacy</p><p>Billing</p></div><div><h3>DBMS</h3><p>CRUD</p><p>Views</p><p>Triggers</p></div></div></footer><div id="toast" class="toast"></div><script src="js/main.js"></script><script>homeSignupForm.addEventListener('submit',async e=>{e.preventDefault();if(suPassword.value!==suConfirm.value){homeSignupResult.value='Passwords do not match';return}try{const data=await postJSON('/signup/patient',{name:suName.value,email:suEmail.value,password:suPassword.value,phone_no:suPhone.value,dob:suDob.value,gender:suGender.value});homeSignupResult.value=data.message||'Signup successful';toast('Patient account created');homeSignupForm.reset();setTimeout(()=>location.href='HTML/login.html',900)}catch(err){homeSignupResult.value=err.message}});</script></body></html>
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<title>MedNexus Hospitals | Advanced HMS</title>
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
+	<body>
+		<nav class="site-nav glass">
+			<a class="logo" href="index.html"
+				>MedNexus <span>Hospitals</span></a
+			>
+			<div class="nav-links">
+				<a class="active" href="index.html">Home</a
+				><a href="HTML/features.html">Features</a
+				><a href="HTML/pricing.html">Plans</a
+				><a href="HTML/help.html">Help</a
+				><a href="HTML/contact.html">Contact</a
+				><a class="btn" href="HTML/login.html">Login</a>
+			</div>
+		</nav>
+		<section class="hero">
+			<div>
+				<div class="kicker">
+					⚕ Final DBMS Hospital Management System
+				</div>
+				<h1>
+					Advanced HMS with appointments, chat, EMR, pharmacy, billing
+					and staff modules.
+				</h1>
+				<p>
+					This final frontend supports your friend’s core hospital
+					system and your upgraded modules. Each dashboard operation
+					opens as a separate HTML page.
+				</p>
+				<div class="hero-actions">
+					<a class="btn" href="HTML/login.html">Open Login Portal</a
+					><a class="btn-blue" href="#signup">Patient Signup Here</a
+					><a class="btn-outline" href="HTML/features.html"
+						>Explore Features</a
+					>
+				</div>
+				<div class="grid-4">
+					<div class="stat">
+						<span>Roles</span>
+						<h3>3</h3>
+					</div>
+					<div class="stat">
+						<span>Modules</span>
+						<h3>12+</h3>
+					</div>
+					<div class="stat">
+						<span>Chat</span>
+						<h3>Live</h3>
+					</div>
+					<div class="stat">
+						<span>DBMS</span>
+						<h3>SQL</h3>
+					</div>
+				</div>
+			</div>
+			<div class="hero-img">
+				<div class="float one">
+					<b>Doctor-Patient Chat</b><br /><span style="color: #64748b"
+						>Appointment secured</span
+					>
+				</div>
+				<div class="float two">
+					<b>Workbench Ready</b><br /><span style="color: #64748b"
+						>Tables, views, triggers</span
+					>
+				</div>
+			</div>
+		</section>
+		<section class="section section-alt">
+			<h2 class="section-title">Complete Feature Set</h2>
+			<p class="section-subtitle">
+				Designed for a DBMS project demo: every form inserts or reads
+				real MySQL data through your controllers.
+			</p>
+			<div class="grid-4">
+				<div class="card">
+					<div class="feature-icon">📅</div>
+					<h3>Appointments</h3>
+					<p>
+						Patient booking, admin approval and doctor completion.
+					</p>
+				</div>
+				<div class="card">
+					<div class="feature-icon">💬</div>
+					<h3>Messaging</h3>
+					<p>Doctor-patient appointment-based chat system.</p>
+				</div>
+				<div class="card">
+					<div class="feature-icon">💊</div>
+					<h3>Prescriptions</h3>
+					<p>Doctor-created prescriptions visible to patients.</p>
+				</div>
+				<div class="card">
+					<div class="feature-icon">🛒</div>
+					<h3>Pharmacy</h3>
+					<p>Patient can order medicine from prescription ID.</p>
+				</div>
+				<div class="card">
+					<div class="feature-icon">📁</div>
+					<h3>EMR</h3>
+					<p>Electronic medical records created by doctors.</p>
+				</div>
+				<div class="card">
+					<div class="feature-icon">🧾</div>
+					<h3>Billing</h3>
+					<p>Admin billing and patient billing visibility.</p>
+				</div>
+				<div class="card">
+					<div class="feature-icon">🏢</div>
+					<h3>Staff</h3>
+					<p>Staff records, work and salary details.</p>
+				</div>
+				<div class="card">
+					<div class="feature-icon">❤️</div>
+					<h3>Tracker</h3>
+					<p>Patient health tracker for weight, BP and sugar.</p>
+				</div>
+			</div>
+		</section>
+		<section class="section" id="signup">
+			<h2 class="section-title">Patient Signup</h2>
+			<p class="section-subtitle">
+				Create your patient account directly from the homepage. It uses
+				<b>/signup/patient</b>.
+			</p>
+			<div class="card" style="max-width: 980px; margin: auto">
+				<form id="homeSignupForm">
+					<div class="grid-3">
+						<div class="form-group">
+							<label>Name</label><input id="suName" required />
+						</div>
+						<div class="form-group">
+							<label>Email</label
+							><input id="suEmail" type="email" required />
+						</div>
+						<div class="form-group">
+							<label>Password</label
+							><input id="suPassword" type="password" required />
+						</div>
+						<div class="form-group">
+							<label>Confirm Password</label
+							><input id="suConfirm" type="password" required />
+						</div>
+						<div class="form-group">
+							<label>Phone</label
+							><input id="suPhone" pattern="[0-9]{10}" required />
+						</div>
+						<div class="form-group">
+							<label>DOB</label
+							><input id="suDob" type="date" required />
+						</div>
+						<div class="form-group">
+							<label>Gender</label
+							><select id="suGender">
+								<option value="male">male</option>
+								<option value="female">female</option>
+							</select>
+						</div>
+					</div>
+					<button class="btn" type="submit">
+						Create Patient Account</button
+					><input
+						id="homeSignupResult"
+						readonly
+						placeholder="Signup status"
+					/>
+				</form>
+			</div>
+		</section>
+		<footer class="footer">
+			<div class="footer-grid">
+				<div>
+					<h2>MedNexus Hospitals</h2>
+					<p>
+						Final combined frontend for DBMS hospital management
+						system.
+					</p>
+				</div>
+				<div>
+					<h3>Friend Features</h3>
+					<p>Login</p>
+					<p>Appointments</p>
+					<p>Chat</p>
+				</div>
+				<div>
+					<h3>Your Features</h3>
+					<p>EMR</p>
+					<p>Pharmacy</p>
+					<p>Billing</p>
+				</div>
+				<div>
+					<h3>DBMS</h3>
+					<p>CRUD</p>
+					<p>Views</p>
+					<p>Triggers</p>
+				</div>
+			</div>
+		</footer>
+		<div id="toast" class="toast"></div>
+		<script src="js/main.js"></script>
+		<script>
+			homeSignupForm.addEventListener("submit", async (e) => {
+				e.preventDefault();
+				if (suPassword.value !== suConfirm.value) {
+					homeSignupResult.value = "Passwords do not match";
+					return;
+				}
+				try {
+					const data = await postJSON("/signup/patient", {
+						name: suName.value,
+						email: suEmail.value,
+						password: suPassword.value,
+						phone_no: suPhone.value,
+						dob: suDob.value,
+						gender: suGender.value,
+					});
+					homeSignupResult.value =
+						data.message || "Signup successful";
+					toast("Patient account created");
+					homeSignupForm.reset();
+					setTimeout(() => (location.href = "HTML/login.html"), 900);
+				} catch (err) {
+					homeSignupResult.value = err.message;
+				}
+			});
+		</script>
+	</body>
+</html>

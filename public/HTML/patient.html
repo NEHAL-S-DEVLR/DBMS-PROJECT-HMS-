@@ -1,1 +1,87 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Patient Health Center | MedNexus</title><link rel="stylesheet" href="../css/style.css"></head><body><div class="dashboard"><aside class="sidebar"><div class="sidebar-head"><div class="avatar">P</div><div><h2>MedNexus</h2><small>Patient Portal</small></div></div><nav class="side-links"><a class="active" href="patient.html">🏠 Profile</a><a class="" href="patient_book.html">📅 Book Appointment</a><a class="" href="patient_appointments.html">📋 Appointments</a><a class="" href="patient_prescriptions.html">💊 Prescriptions</a><a class="" href="patient_pharmacy.html">🛒 Pharmacy</a><a class="" href="patient_tracker.html">❤️ Health Tracker</a><a class="" href="patient_billing.html">🧾 Billing</a><a class="" href="patient_chat.html">💬 Doctor Chat</a><a class="" href="patient_delete.html">⚠ Delete Account</a><a class="" href="../index.html">↩ Logout</a></nav></aside><main class="main"><header class="topbar"><div><h1>Patient Health Center</h1><p>Profile and quick health navigation.</p></div><div style="display:flex;gap:10px;align-items:center;max-width:460px;width:100%"><input id="globalSearch" placeholder="Search this page..." oninput="filterCards()"></div></header><section class="panel"><div class="panel-head"><h2>My Profile</h2></div><div class="grid-3"><div class="card"><b>Name</b><br><span id="name"></span></div><div class="card"><b>Email</b><br><span id="email"></span></div><div class="card"><b>Phone</b><br><span id="phone"></span></div><div class="card"><b>DOB</b><br><span id="dob"></span></div><div class="card"><b>Gender</b><br><span id="gender"></span></div><a class="card" href="patient_book.html"><h3>Book Appointment</h3><p>Choose doctor and request appointment.</p></a></div></section></main></div><div id="toast" class="toast"></div><script src="../js/main.js"></script><script src="../js/patient_profile.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<title>Patient Health Center | MedNexus</title>
+		<link rel="stylesheet" href="../css/style.css" />
+	</head>
+	<body>
+		<div class="dashboard">
+			<aside class="sidebar">
+				<div class="sidebar-head">
+					<div class="avatar">P</div>
+					<div>
+						<h2>MedNexus</h2>
+						<small>Patient Portal</small>
+					</div>
+				</div>
+				<nav class="side-links">
+					<a class="active" href="patient.html">🏠 Profile</a
+					><a class="" href="patient_book.html">📅 Book Appointment</a
+					><a class="" href="patient_appointments.html"
+						>📋 Appointments</a
+					><a class="" href="patient_prescriptions.html"
+						>💊 Prescriptions</a
+					><a class="" href="patient_pharmacy.html">🛒 Pharmacy</a
+					><a class="" href="patient_tracker.html"
+						>❤️ Health Tracker</a
+					><a class="" href="patient_billing.html">🧾 Billing</a
+					><a class="" href="patient_chat.html">💬 Doctor Chat</a
+					><a class="" href="patient_delete.html">⚠ Delete Account</a
+					><a class="" href="../index.html">↩ Logout</a>
+				</nav>
+			</aside>
+			<main class="main">
+				<header class="topbar">
+					<div>
+						<h1>Patient Health Center</h1>
+						<p>Profile and quick health navigation.</p>
+					</div>
+					<div
+						style="
+							display: flex;
+							gap: 10px;
+							align-items: center;
+							max-width: 460px;
+							width: 100%;
+						"
+					>
+						<input
+							id="globalSearch"
+							placeholder="Search this page..."
+							oninput="filterCards()"
+						/>
+					</div>
+				</header>
+				<section class="panel">
+					<div class="panel-head"><h2>My Profile</h2></div>
+					<div class="grid-3">
+						<div class="card">
+							<b>Name</b><br /><span id="name"></span>
+						</div>
+						<div class="card">
+							<b>Email</b><br /><span id="email"></span>
+						</div>
+						<div class="card">
+							<b>Phone</b><br /><span id="phone"></span>
+						</div>
+						<div class="card">
+							<b>DOB</b><br /><span id="dob"></span>
+						</div>
+						<div class="card">
+							<b>Gender</b><br /><span id="gender"></span>
+						</div>
+						<a class="card" href="patient_book.html"
+							><h3>Book Appointment</h3>
+							<p>Choose doctor and request appointment.</p></a
+						>
+					</div>
+				</section>
+			</main>
+		</div>
+		<div id="toast" class="toast"></div>
+		<script src="../js/main.js"></script>
+		<script src="../js/patient_profile.js"></script>
+	</body>
+</html>
